@@ -4,6 +4,28 @@
 var grpc = require('@grpc/grpc-js');
 var protos_calc_pb = require('../protos/calc_pb.js');
 
+function serialize_calc_PrimeNumberDecompositionRequest(arg) {
+  if (!(arg instanceof protos_calc_pb.PrimeNumberDecompositionRequest)) {
+    throw new Error('Expected argument of type calc.PrimeNumberDecompositionRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_calc_PrimeNumberDecompositionRequest(buffer_arg) {
+  return protos_calc_pb.PrimeNumberDecompositionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_calc_PrimeNumberDecompositionResponse(arg) {
+  if (!(arg instanceof protos_calc_pb.PrimeNumberDecompositionResponse)) {
+    throw new Error('Expected argument of type calc.PrimeNumberDecompositionResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_calc_PrimeNumberDecompositionResponse(buffer_arg) {
+  return protos_calc_pb.PrimeNumberDecompositionResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_calc_SumRequest(arg) {
   if (!(arg instanceof protos_calc_pb.SumRequest)) {
     throw new Error('Expected argument of type calc.SumRequest');
@@ -38,6 +60,17 @@ var CalcServiceService = exports.CalcServiceService = {
     requestDeserialize: deserialize_calc_SumRequest,
     responseSerialize: serialize_calc_SumResponse,
     responseDeserialize: deserialize_calc_SumResponse,
+  },
+  primeNumberDecomposition: {
+    path: '/calc.CalcService/PrimeNumberDecomposition',
+    requestStream: false,
+    responseStream: true,
+    requestType: protos_calc_pb.PrimeNumberDecompositionRequest,
+    responseType: protos_calc_pb.PrimeNumberDecompositionResponse,
+    requestSerialize: serialize_calc_PrimeNumberDecompositionRequest,
+    requestDeserialize: deserialize_calc_PrimeNumberDecompositionRequest,
+    responseSerialize: serialize_calc_PrimeNumberDecompositionResponse,
+    responseDeserialize: deserialize_calc_PrimeNumberDecompositionResponse,
   },
 };
 

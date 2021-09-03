@@ -2,7 +2,8 @@ syntax = "proto3";
 package calc;
 
 service CalcService {
-    rpc Sum (SumRequest) returns (SumResponse);
+    rpc Sum (SumRequest) returns (SumResponse) {}
+    rpc PrimeNumberDecomposition (PrimeNumberDecompositionRequest) returns (stream PrimeNumberDecompositionResponse) {}
 }
 
 message Numbers {
@@ -16,4 +17,12 @@ message SumRequest {
 
 message SumResponse {
     int32 result = 1;
+}
+
+message PrimeNumberDecompositionRequest {
+    int32 number = 1;
+}
+
+message PrimeNumberDecompositionResponse {
+    int32 prime_factor = 1;
 }
